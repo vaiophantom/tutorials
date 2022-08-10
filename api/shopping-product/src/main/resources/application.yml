@@ -1,0 +1,51 @@
+server:
+  port: 8800
+
+mysql:
+  host: 127.0.0.1
+  port: 3306
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+ProductPageSize: 10
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${mysql.host}:${mysql.port}/shopping-cart?createDatabaseIfNotExist=true&autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8
+    username: root
+    password: root123
+    hikari:
+      idle-timeout: 10000
+      connection-timeout: 5000
+      maximum-pool-size: 50
+      minimum-idle: 10
+
+
+
+
+
+  jpa:
+    properties:
+      hibernate:
+        connection:
+          characterEncoding: utf-8
+          charSet: utf-8
+          useUnicode: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+        show_sql: true
+        globally_quoted_identifiers: true
+        generate-ddl: true
+    server:
+    hibernate:
+      ddl-auto: validate

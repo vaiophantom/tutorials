@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Product Cart 1`] = `
+<div>
+  <div
+    class="product-cart-screen"
+  >
+    <div
+      style="flex: 3; display: flex; flex-direction: row; align-items: center;"
+    >
+      <div
+        class=""
+        style="margin-right: 20px;"
+      >
+        <input
+          class="form-check-input"
+          type="checkbox"
+        />
+      </div>
+      <img
+        class=""
+        height="100"
+        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHxlbnwwfHwwfHw%3D&w=1000&q=80"
+        style="margin-right: 20px;"
+        width="100"
+      />
+      <p>
+        description
+      </p>
+    </div>
+    <div
+      style="flex: 1;"
+    >
+      <p>
+        100
+         $ 
+      </p>
+    </div>
+    <div
+      style="flex: 1;"
+    >
+      <p>
+        1
+      </p>
+    </div>
+    <div
+      style="flex: 1;"
+    >
+      <p>
+        100.00
+         $
+      </p>
+    </div>
+  </div>
+</div>
+`;

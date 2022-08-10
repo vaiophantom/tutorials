@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Checkout 1`] = `
+<div>
+  <div
+    class="checkout-screen"
+  >
+    <div
+      class="header"
+    >
+      <img
+        class="logo"
+        height="100"
+        src="logo.png"
+        width="200"
+      />
+      <div
+        class="search"
+      >
+        <div
+          class="input-group"
+          style="background-color: white; align-items: center;"
+        >
+          <button
+            aria-expanded="false"
+            class="dropdown-toggle btn btn-outline-primary"
+            type="button"
+          >
+            name
+          </button>
+          <div
+            aria-labelledby=""
+            class="dropdown-menu"
+            x-placement="bottom-start"
+          >
+            <a
+              class="dropdown-item"
+              data-rr-ui-dropdown-item=""
+              href="#"
+              role="button"
+              tabindex="0"
+            >
+              name
+            </a>
+            <a
+              class="dropdown-item"
+              data-rr-ui-dropdown-item=""
+              href="#"
+              role="button"
+              tabindex="0"
+            >
+              branch
+            </a>
+            <a
+              class="dropdown-item"
+              data-rr-ui-dropdown-item=""
+              href="#"
+              role="button"
+              tabindex="0"
+            >
+              category
+            </a>
+            <a
+              class="dropdown-item"
+              data-rr-ui-dropdown-item=""
+              href="#"
+              role="button"
+              tabindex="0"
+            >
+              color
+            </a>
+          </div>
+          <input
+            aria-describedby="basic-addon3"
+            class="form-control"
+            placeholder="Search products based on category name, product name, price, branch..."
+            value=""
+          />
+          <img
+            class=""
+            height="30"
+            src="search.jpeg"
+            width="30"
+          />
+        </div>
+      </div>
+      <img
+        class="cart"
+        height="40"
+        src="cart.png"
+        width="40"
+      />
+    </div>
+    <div
+      class="checkout-body"
+    >
+      <div
+        style="flex: 1;"
+      >
+        <label
+          class="form-label"
+          for="address"
+        >
+          Address
+        </label>
+        <div
+          class="mb-3 input-group has-validation"
+        >
+          <input
+            class="form-control is-invalid"
+            id="address"
+            required=""
+            value=""
+          />
+          <div
+            class="invalid-feedback"
+          >
+            Please fill a address.
+          </div>
+        </div>
+        <label
+          class="form-label"
+          for="phone-number"
+        >
+          Phone Number
+        </label>
+        <div
+          class="mb-3 input-group"
+        >
+          <input
+            class="form-control is-invalid"
+            id="phone-number"
+            type="tel"
+            value=""
+          />
+          <div
+            class="invalid-feedback"
+          >
+            Please fill a phone number.
+          </div>
+        </div>
+        <label
+          class="form-label"
+        >
+          Payment Method
+        </label>
+        <div
+          class="mb-3 input-group"
+        >
+          <select
+            aria-label="Default select example"
+            class="form-select"
+          >
+            <option
+              value="1"
+            >
+              Pay by cash
+            </option>
+            <option
+              disabled=""
+              value="2"
+            >
+              Pay online
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        style="flex: 1; padding-left: 40px; margin-left: 40px; border-left: 1px solid rgb(237, 237, 237);"
+      >
+        <ul />
+      </div>
+    </div>
+    <div
+      class="checkout-footer"
+    >
+      <p
+        style="font-weight: bold;"
+      >
+        total price: 
+        0.00
+         $
+      </p>
+      <button
+        class="btn btn-warning"
+        disabled=""
+        style="margin: 20px;"
+        type="submit"
+      >
+        Place to order
+      </button>
+    </div>
+  </div>
+</div>
+`;

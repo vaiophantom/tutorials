@@ -1,0 +1,134 @@
+.App {
+}
+.header {
+  background-color: orange;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.header .cart {
+  cursor: pointer;
+  margin-left: 20px;
+}
+.header .search {
+  flex: 1;
+  margin: 0 160px 0 40px;
+  }
+.header .logo {
+  cursor: pointer;
+}
+
+.body {
+  width: 70%;
+  margin:40px auto 60px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-body {
+  background-color: white;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  padding: 40px 20px;
+
+}
+.detail-image {
+  margin-right: 40px;
+}
+.detail-color{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.detail-quantity {
+   margin-bottom: 15px;
+  }
+.detail-quantity-input{
+  width: 4rem;
+  text-align: center;
+  }
+.product-screen {
+  background-color: white;
+  cursor: pointer;
+  border: 1px solid rgb(221, 221, 221);
+  margin:0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.product-content {
+  padding: 5px;
+}
+.product-checkout-screen {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.shopping-cart-label {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-bottom: 1px solid rgb(237, 237, 237);
+}
+.shopping-cart-body {
+  margin: auto;
+  width: 70%;
+background-color: white;
+padding: 40px 20px;
+
+}
+.shopping-cart-footer {
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
+  margin: auto;
+  width: 70%;
+  background-color: white;
+
+}
+
+.product-cart-screen {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(237, 237, 237);
+}
+.checkout-body {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 70%;
+background-color: white;
+padding: 40px 20px;
+}
+.checkout-footer {
+  margin: auto;
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  background-color: white;
+  align-items: center;
+
+}
+
+
+

@@ -1,0 +1,109 @@
+services:
+  mysql:
+    build:
+      context: mysql/
+      args:
+        MYSQL_VERSION: $MYSQL_VERSION
+    volumes:
+      - type: bind
+        source: ./mysql/config/mysql.cnf
+        target: /etc/mysql/conf.d/my.cnf
+        read_only: true
+    ports:
+      - "3306:3306"
+    # https://hub.docker.com/_/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root123
+      - MYSQL_DATABASE=shopping-cart
+      - MYSQL_USER=system
+      - MYSQL_PASSWORD=admin123
+      - MYSQL_ROOT_HOST=%
+    networks:
+      - elk
+
+#  elasticsearch:
+#    build:
+#      context: elasticsearch/
+#      args:
+#        ELK_VERSION: $ELK_VERSION
+#    volumes:
+#      - type: bind
+#        source: ./elasticsearch/config/elasticsearch.yml
+#        target: /usr/share/elasticsearch/config/elasticsearch.yml
+#        read_only: true
+#      # Persist data on host machine
+#      - type: volume
+#        source: elasticsearch
+#        target: /usr/share/elasticsearch/data
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
+#    environment:
+#      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+#      ELASTIC_PASSWORD: changeme
+#      # Use single node discovery in order to disable production mode and avoid bootstrap checks.
+#      # see: https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+#      discovery.type: single-node
+#    networks:
+#      - elk
+#
+#  logstash:
+#    build:
+#      context: logstash/
+#      args:
+#        ELK_VERSION: $ELK_VERSION
+#    volumes:
+#      - type: bind
+#        source: ./logstash/config/logstash.yml
+#        target: /usr/share/logstash/config/logstash.yml
+#        read_only: true
+#      # List id and config path of pipelines
+#      - type: bind
+#        source: ./logstash/pipeline/pipelines.yml
+#        target: /usr/share/logstash/config/pipelines.yml
+#        read_only: true
+#      # Add configurations of pipelines
+#      - type: bind
+#        source: ./logstash/pipeline/conf
+#        target: /usr/share/logstash/pipeline
+#        read_only: true
+#      # Add SQL scripts used by JDBC input plugin
+#      - type: bind
+#        source: ./logstash/pipeline/sql
+#        target: /usr/share/logstash/sql
+#        read_only: true
+#    ports:
+#      - "5044:5044"
+#      - "5000:5000/tcp"
+#      - "5000:5000/udp"
+#      - "9600:9600"
+#    environment:
+#      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+#    networks:
+#      - elk
+#    depends_on:
+#      - elasticsearch
+#
+#  kibana:
+#    build:
+#      context: kibana/
+#      args:
+#        ELK_VERSION: $ELK_VERSION
+#    volumes:
+#      - type: bind
+#        source: ./kibana/config/kibana.yml
+#        target: /usr/share/kibana/config/kibana.yml
+#        read_only: true
+#    ports:
+#      - "5601:5601"
+#    networks:
+#      - elk
+#    depends_on:
+#      - elasticsearch
+
+networks:
+  elk:
+    driver: bridge
+
+volumes:
+  elasticsearch:
