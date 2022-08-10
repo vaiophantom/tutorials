@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductCheckout from "../../components/ProductCheckout";
 import { currencyFormat } from "../../utils/helper";
+import { addToCart } from "../../utils/fetch";
 
 const SUCCESS_MESS = "Your order was success !";
 
@@ -34,9 +35,23 @@ const Checkout = () => {
     }
   }, [listProducts]);
 
-  const onOrder = () => {
-    clearCart();
-    navigate("/", { state: { message: SUCCESS_MESS } });
+  const onOrder = async () => {
+    const body = {
+      productIds: listProducts.map((item) => item.id),
+      totalPrice: total_payment,
+      productQuantity: listProducts.length,
+    };
+    console.log(body);
+
+    try {
+      const res = await addToCart(body);
+      if (res) {
+        clearCart();
+        navigate("/", { state: { message: SUCCESS_MESS } });
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   const clearCart = () => {
     localStorage.removeItem("cart");
@@ -52,7 +67,7 @@ const Checkout = () => {
     setPhoneNumber(value);
   };
   const handleSearch = (type, value) => {};
- 
+
   return (
     <div className="checkout-screen">
       <Header handleSearch={handleSearch} />

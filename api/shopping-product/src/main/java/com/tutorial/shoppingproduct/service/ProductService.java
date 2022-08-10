@@ -12,4 +12,6 @@ public interface ProductService {
     ProductResponse getAllProductByPage(int pageNo, Long productId);
 
     Pagination<ProductDetails> searchProducts(ProductRequest productRequest, Integer selectPage, Integer pageSize);
+
+    Product searchById(Long id);
 }

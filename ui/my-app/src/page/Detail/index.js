@@ -1,12 +1,21 @@
 import { useLocation } from "react-router-dom";
-import { Image, Button } from "react-bootstrap";
+import { Image, Button, Modal } from "react-bootstrap";
 import CONSTANT from "../../constants";
 import Header from "../../components/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Detail = () => {
   const [quantity, setQuantity] = useState(1);
+  const [message, setMessage] = useState("");
   const { state } = useLocation();
+
+  useEffect(() => {
+    if (message !== "") {
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+    }
+  }, [message]);
 
   const addToCart = () => {
     let listCart = JSON.parse(localStorage.getItem("cart"));
@@ -19,8 +28,15 @@ const Detail = () => {
       }
       localStorage.setItem("cart", JSON.stringify(listCart));
     } else {
-      localStorage.setItem("cart", JSON.stringify([{ ...state, quantity: quantity }]));
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([{ ...state, quantity: quantity }])
+      );
     }
+    setMessage("add to cart success !");
+  };
+  const onHideModal = () => {
+    setMessage("");
   };
   const decrement = () => {
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
@@ -49,7 +65,12 @@ const Detail = () => {
           ></div>
           <div className="detail-quantity">
             <button onClick={decrement}>&mdash;</button>
-            <input className="detail-quantity-input" type="text" value={quantity} readonly />
+            <input
+              className="detail-quantity-input"
+              type="text"
+              value={quantity}
+              readonly
+            />
             <button onClick={increment}>&#xff0b;</button>
           </div>
           <Button onClick={addToCart} variant="warning">
@@ -57,6 +78,12 @@ const Detail = () => {
           </Button>
         </div>
       </div>
+      <Modal show={!!message} onHide={onHideModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Notification</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{message}</Modal.Body>
+      </Modal>
     </div>
   );
 };

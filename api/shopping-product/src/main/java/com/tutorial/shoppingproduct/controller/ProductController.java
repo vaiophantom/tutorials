@@ -3,6 +3,8 @@ package com.tutorial.shoppingproduct.controller;
 import com.sun.istack.NotNull;
 import com.tutorial.shoppingproduct.controller.request.ProductRequest;
 import com.tutorial.shoppingproduct.controller.response.ApiPaginationResponse;
+import com.tutorial.shoppingproduct.controller.response.ApiResponse;
+import com.tutorial.shoppingproduct.controller.response.utils.ApiResponseUtil;
 import com.tutorial.shoppingproduct.model.ProductDetails;
 import com.tutorial.shoppingproduct.service.ProductService;
 import com.tutorial.shoppingproduct.utils.Pagination;
@@ -23,6 +25,14 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+
+    @GetMapping(value = "/search/{id}")
+    public ResponseEntity<ApiResponse> searchProductsById(@PathVariable Long id) {
+        logger.info(
+                "ProductController.searchProductsById: - id = " +id);
+
+        return ApiResponseUtil.successResponse(productService.searchById(id));
+    }
 
     @PostMapping(value = "/search")
     public ResponseEntity<ApiPaginationResponse> searchProducts(

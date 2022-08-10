@@ -23,16 +23,17 @@ public class CartController {
     private  static final Logger logger = LoggerFactory.getLogger((MethodHandles.lookup().lookupClass()));
 
     @PostMapping(value = "/add")
-    public void addToCart(@RequestBody CartRequest cartRequest) {
+    public ResponseEntity<ApiResponse> addToCart(@RequestBody CartRequest cartRequest) {
         logger.info("CartController.addToCart: " + cartRequest.getProductIds());
         cartService.addToCard(cartRequest.getProductIds(), cartRequest.getTotalPrice());
+        return ApiResponseUtil.successResponse(true);
     }
 
     @GetMapping("/search")
-    public List<Cart> searchAll() {
+    public ResponseEntity<ApiResponse> searchAll() {
         logger.info(
                 "CartService.search");
-        return cartService.searchAll();
+        return ApiResponseUtil.successResponse(cartService.searchAll());
     }
 
     @GetMapping("/search/{id}")

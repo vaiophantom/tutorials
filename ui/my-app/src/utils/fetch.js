@@ -1,4 +1,7 @@
-const BASE_URL = "http://10.27.85.132:8800/";
+import { API_PATH } from "../api/apiPath";
+
+const BASE_URL = "http://172.20.10.12:8800/";
+const BASE_URL_CART = "http://172.20.10.12:8801/";
 const MOCK_API = "https://62eb3500ad295463259a232a.mockapi.io/products";
 const mockData = {
   status: {
@@ -87,19 +90,45 @@ const mockData = {
     sortOrder: null,
   },
 };
-export const post = async (url = "", body = {}) => {
+export const searchProduct = async (body = {}) => {
+  const url = BASE_URL + API_PATH.SEARCH;
+
   try {
-    let response = await fetch(BASE_URL + url, {
+    let response = await fetch(url, {
       method: "POST",
       body: JSON.stringify(body),
+      headers:{
+        'Content-Type': 'application/json'
+      }
     });
-    response = response.json();
-    if (response?.data.length > 0) return response?.data;
+    response = await response.json();
+    console.log('response',response);
+    if (response?.data) return response.data;
     else {
       throw new Error("cannot get products right now, please comback later !");
     }
   } catch (error) {
     throw new Error("cannot get products right now, please comback later !");
+  }
+};
+
+export const addToCart = async (body = {}) => {
+  const url = BASE_URL_CART + API_PATH.ADD_TO_CART;
+  try {
+    let response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    });
+    response = await response.json();
+    if (response?.data) return response.data;
+    else {
+      throw new Error("cannot add products to cart right now, please comback later !");
+    }
+  } catch (error) {
+    throw new Error("cannot add products to cart right now, please comback later !");
   }
 };
 

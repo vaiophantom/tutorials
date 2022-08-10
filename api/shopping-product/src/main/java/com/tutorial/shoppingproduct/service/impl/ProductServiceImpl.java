@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Transactional
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -54,5 +56,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Pagination<ProductDetails> searchProducts(ProductRequest productRequest, Integer selectPage, Integer pageSize) {
         return productRepository.searchProducts(productRequest, selectPage, pageSize);
+    }
+
+    @Override
+    public Product searchById(Long id) {
+        if(Objects.isNull(id)) {
+            throw new RuntimeException("Product ID could not be null.");
+        }
+        return productRepository.searchProductById(id);
     }
 }

@@ -4,7 +4,7 @@ import Product from "../../components/Product";
 import Header from "../../components/Header";
 import CONSTANT from "../../constants";
 import { useLocation } from "react-router-dom";
-import { post, postMock } from "../../utils/fetch";
+import { searchProduct, postMock } from "../../utils/fetch";
 import { API_PATH } from "../../api/apiPath";
 
 const LIMIT_PRODUCT = 20;
@@ -19,7 +19,7 @@ const Home = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        let newProducts = await postMock(API_PATH.SEARCH);
+        let newProducts = await searchProduct();
         setAllProducts(newProducts);
       } catch (error) {
         console.log("error", error);
@@ -45,10 +45,18 @@ const Home = () => {
     }
   }, [state]);
 
+  useEffect(() => {
+    if (message !== "") {
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+    }
+  }, [message]);
+
   const handleSearch = async (type, value) => {
     try {
       console.log({ [type]: value });
-      const newProducts = await post(API_PATH.SEARCH, { [type]: value });
+      const newProducts = await searchProduct({ [type]: value });
       setProducts(newProducts);
     } catch (error) {
       console.log("error", error);
@@ -70,7 +78,13 @@ const Home = () => {
       <div className="body">
         {products.length > 0 ? (
           products.map((item, idx) => {
-            return <Product key={idx} data={item} />;
+            return (
+              <Product
+                key={idx}
+                data={item}
+                onAddCart={() => setMessage("add to cart success !")}
+              />
+            );
           })
         ) : (
           <p>not found any products</p>

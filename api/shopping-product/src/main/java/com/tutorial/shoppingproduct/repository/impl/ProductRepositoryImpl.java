@@ -61,6 +61,13 @@ public class ProductRepositoryImpl implements ProductRepository {
         return productDetailsPagination;
     }
 
+    @Override
+    public Product searchProductById(Long id) {
+        Query query = entityManager.createQuery(PRODUCT_RECORDS_SQL + " WHERE p.id = :id");
+        query.setParameter("id", id);
+        return (Product)query.getSingleResult();
+    }
+
     private Long getProductsRecordCount(ProductRequest productRequest) {
         Query query = entityManager.createQuery(PRODUCT_RECORDS_COUNT_SQL + productRequest.getQueryConditions());
         if (!CollectionUtils.isEmpty(productRequest.getQueryParams())) {
