@@ -1,7 +1,6 @@
 import { API_PATH } from "../api/apiPath";
 
-const BASE_URL = "http://172.20.10.12:8800/";
-const BASE_URL_CART = "http://172.20.10.12:8801/";
+const BASE_URL = "http://localhost:8802/";
 const MOCK_API = "https://62eb3500ad295463259a232a.mockapi.io/products";
 const mockData = {
   status: {
@@ -113,7 +112,7 @@ export const searchProduct = async (body = {}) => {
 };
 
 export const addToCart = async (body = {}) => {
-  const url = BASE_URL_CART + API_PATH.ADD_TO_CART;
+  const url = BASE_URL + API_PATH.ADD_TO_CART;
   try {
     let response = await fetch(url, {
       method: "POST",

@@ -1,4 +1,4 @@
 export const API_PATH = {
-  SEARCH: "product/search",
-  ADD_TO_CART: "cart/add",
+  SEARCH: "product-service/product/search",
+  ADD_TO_CART: "cart-service/cart/add",
 };
