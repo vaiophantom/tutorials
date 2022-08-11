@@ -3,6 +3,7 @@ services:
   mysql:
     build:
       context: mysql/
+      #dockerfile: Dockerfile
       args:
         MYSQL_VERSION: $MYSQL_VERSION
     volumes:
@@ -19,10 +20,8 @@ services:
       - MYSQL_USER=system
       - MYSQL_PASSWORD=admin123
       - MYSQL_ROOT_HOST=%
-    networks:
-      - elk
 
-  
+  ################## Consul #####################
   consul:
     image: consul:1.12
     mem_limit: 4098m
@@ -37,13 +36,73 @@ services:
     command: agent -dev -client=0.0.0.0
     ports:
       - 8500:8500
-    networks:
-      - elk
+
+  ################## gateway #####################
+  gateway:
+    image: gateway
+    build:
+      context: gateway/
+    mem_limit: 4098m
+    mem_reservation: 1024M
+    cpus: 1
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+    environment:
+      SERVER_PORT: 8802
+    network_mode: "host"
+    depends_on:
+      - mysql
+      - consul
 
 
-networks:
-  elk:
-    driver: bridge
+  ################## shopping-cart #####################
+  shopping-cart:
+    image: shopping-cart
+    build:
+      context: cart/
+    mem_limit: 4098m
+    mem_reservation: 1024M
+    cpus: 1
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+    environment:
+      SERVER_PORT: 8801
+      MYSQL_ROOT_PASSWORD: root123
+      SPRING_CLOUD_CONSUL_HOST: localhost
+      SPRING_CLOUD_CONSUL_PORT: 8500
+      logging.level.org.hibernate.SQL: debug
+      logging.level.org.hibernate.type.descriptor.sql: trace
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://localhost:3306/shopping-cart?createDatabaseIfNotExist=true&autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8'
+    network_mode: "host"
+    depends_on:
+      - mysql
+      - consul
 
-volumes:
-  elasticsearch:
+  ################## shopping-product #####################
+  shopping-product:
+    image: shopping-product
+    build:
+      context: product/
+    mem_limit: 4098m
+    mem_reservation: 1024M
+    cpus: 1
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+    environment:
+      SERVER_PORT: 8800
+      MYSQL_ROOT_PASSWORD: root123
+      SPRING_CLOUD_CONSUL_HOST: localhost
+      SPRING_CLOUD_CONSUL_PORT: 8500
+      logging.level.org.hibernate.SQL: debug
+      logging.level.org.hibernate.type.descriptor.sql: trace
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://localhost:3306/shopping-cart?createDatabaseIfNotExist=true&autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8'
+    network_mode: "host"
+    depends_on:
+      - mysql
+      - consul

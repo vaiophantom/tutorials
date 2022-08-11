@@ -86,7 +86,7 @@ values(8, 'Hypermotard', 'hypermotard', 2022080110110, 1, NULL, NULL, 25, 'Red',
 
 
 -- ----------------------------
--- Table structure for product
+-- Table structure for cart
 -- ----------------------------
 DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart`  (
