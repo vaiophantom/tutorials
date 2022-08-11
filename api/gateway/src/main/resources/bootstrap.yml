@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cart-service
+    name: gateway-service
   cloud:
     consul:
       host: localhost

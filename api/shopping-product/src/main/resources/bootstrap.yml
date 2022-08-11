@@ -1,3 +1,21 @@
 spring:
   application:
     name: product-service
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        format: PROPERTIES
+        data-key: data
+        fail-fast: false
+        enabled: false
+      discovery:
+        instance-id: ${spring.application.name}:${random.value}
+        healthCheckInterval: 15s
+        healthCheckPath: /actuator/health
+        health-check-critical-timeout: 1m
+        prefer-ip-address: true
+    loadbalancer:
+      ribbon:
+        enabled: false
