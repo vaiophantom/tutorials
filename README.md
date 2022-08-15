@@ -1,6 +1,7 @@
 # iCommerce
 
-##Prerequisite
+## Prerequisite
+
 | Env            | Description                |
 |----------------|----------------------------|
 | MacOS          | version Monterey 12.2.1    |
@@ -10,21 +11,25 @@
 
 ## List of components
 
-###Microservices
+### Concepts
+https://docs.google.com/presentation/d/1o7ynx5MkGueTXPAYu58hnBAZ37Gyf6DJ/edit?usp=sharing&ouid=110874849828948422394&rtpof=true&sd=true
+
+
+### Microservices
 
 - gateway
 - shopping-product
 - shopping-cart
 
-###User Interface
+### User Interface
 
 - my-app
 
-###Deployment
+### Deployment
 
 - Contain docker-compose.yml and related Dockerfile for correspondent services. 
 
-##Build docker images
+## Build docker images
 
 - Change mode for script file: `sudo chmod -R 777 build-images.sh`
 - Run script file to build whole project, as well as building docker images: `./build-images.sh`
@@ -34,7 +39,7 @@
 
 ## Run Services
 
-###Docker Compose
+### Docker Compose
 is used to run Microservices, Consul and MySQL as multicontainer Docker applications.
 
 - To add the services, run
@@ -59,7 +64,7 @@ After everything is up,
 
 ![img_5.png](img_5.png)
 
-###ReactJS
+### ReactJS
 
 - cd to application folder: `cd ui/my-app`
 - To build the application: `npm install`
