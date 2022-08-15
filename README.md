@@ -14,6 +14,30 @@
 ### Concepts
 https://docs.google.com/presentation/d/1o7ynx5MkGueTXPAYu58hnBAZ37Gyf6DJ/edit?usp=sharing&ouid=110874849828948422394&rtpof=true&sd=true
 
+#### Microservice Capability Model
+
+![img_12.png](img_12.png)
+
+#### Application Components
+
+![img_7.png](img_7.png)
+
+#### Application Overview
+
+![img_8.png](img_8.png)
+
+#### Components interaction
+
+![img_9.png](img_9.png)
+
+#### Consul Multi-Clustering
+
+![img_10.png](img_10.png)
+
+#### Configuration Server
+
+![img_11.png](img_11.png)
+
 
 ### Microservices
 
